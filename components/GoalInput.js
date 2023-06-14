@@ -13,6 +13,7 @@ function GoalInput(props) {
     
     function addGoalHandler() {
         props.onAddGoal(enteredGoalText);
+        props.onFirebase(enteredGoalText);
         setEnteredGoalText('');
     };
 
