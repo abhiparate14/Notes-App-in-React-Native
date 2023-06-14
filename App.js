@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Component, useState } from 'react';
 import { StyleSheet, View, Button, FlatList} from 'react-native';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, setDoc, getDocs, doc } from 'firebase/firestore';
 
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
@@ -10,8 +12,33 @@ export default function App() {
   const [modelIsVisible, setModelIsVisible] = useState(false);
   const [courseGoals, setCourseGoal] = useState([]);
 
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBcbuLJaODarVj-wngx47X3D2vlsiETTdY",
+    authDomain: "notes-app-44.firebaseapp.com",
+    projectId: "notes-app-44",
+    storageBucket: "notes-app-44.appspot.com",
+    messagingSenderId: "70213484242",
+    appId: "1:70213484242:web:ec0208ffd06279a4ee770b",
+    measurementId: "G-VV2PSYYYFV"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+
+    const sendData = async () => {
+      
+      const firebase= getFirestore(app);
+
+      await setDoc(doc(firebase, "users", "user_id"), {
+        first: "Abhi",
+        last: "Parate",
+        born: 2002
+      });
+    }
+
+
   function startAddGoalHandler() {
-    // console.log('press happened') ;
+    // console.log('press happened') ;  
     setModelIsVisible(true);
   }
 
@@ -46,7 +73,9 @@ export default function App() {
         title='Add New Goal' 
         onPress={startAddGoalHandler}
         color="#5e0acc"
+        // onPress={sendData}
       />
+      <Button onPress={sendData} title='Send Data'/>
       <GoalInput visible={modelIsVisible} onAddGoal={addGoalHandler} onCancel={endAddGoalHandler}/>
       <View style={styles.goalsContainer}>
         <FlatList data={courseGoals} 

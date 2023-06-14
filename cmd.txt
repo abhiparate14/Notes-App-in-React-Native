@@ -1,0 +1,8 @@
+firebase connection
+
+codes:
+npx expo install firebase
+
+npx expo install expo-dev-client
+
+npx expo install @react-native-firebase/app
