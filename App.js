@@ -41,9 +41,18 @@ export default function App() {
         actualData: dataforfirebase,
 
       });
-      const data = await 
+      // const data = await 
       // const myData =  await getDoc(doc(firebase, "data", {nowId}));
-      console.log(data);
+      // console.log(data);
+
+      // fetch data from firebase firestore
+
+      const myData = await getDoc(doc(firebase, "data", nowId));
+      console.log(myData.data());
+      console.log(myData.data().actualData);
+      console.log(myData.data().actualData[0].text);
+      console.log(myData.data().actualData[0].id);
+
     }
 
 
