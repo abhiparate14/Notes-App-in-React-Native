@@ -50,8 +50,7 @@ export default function App() {
       const myData = await getDoc(doc(firebase, "data", nowId));
       console.log(myData.data());
       console.log(myData.data().actualData);
-      console.log(myData.data().actualData[0].text);
-      console.log(myData.data().actualData[0].id);
+
 
     }
 
